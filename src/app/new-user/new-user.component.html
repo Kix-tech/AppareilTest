@@ -1,0 +1,24 @@
+<div class="col-sm-8 col-sm-offset-2">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()">
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" class="form-control" formControlName="nom">
+        </div>
+        <div class="form-group">
+            <label for="prenom">Prenom</label>
+            <input type="text" id="prenom" class="form-control" formControlName="prenom">
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="text" id="email" class="form-control" formControlName="email">
+        </div>
+        <div formArrayName="loisirs">
+            <h3>Vos loisirs</h3>
+            <div class="form-group" *ngFor="let loisirControl of getLoisirs().controls;let i=index">
+                <input type="text" [formControlName]="i" class="form-control">
+            </div>
+            <button type="button" class="btn btn-success" (click)="onAjoutLoisir()">+</button>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid">Soumettre</button>
+    </form>
+</div>
